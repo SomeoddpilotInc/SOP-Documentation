@@ -6,3 +6,5 @@ gulp.task("styles", function () {
     .pipe(stylus())
     .pipe(gulp.dest("./css"));
 });
+
+gulp.task("default", ["styles"]);
