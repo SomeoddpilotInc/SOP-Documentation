@@ -1,0 +1,14 @@
+{
+  "name": "sop-documentation",
+  "version": "1.0.0",
+  "description": "Documentation framework for SOP sites",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Robertson <alex@someoddpilot.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-stylus": "^1.3.4"
+  }
+}
