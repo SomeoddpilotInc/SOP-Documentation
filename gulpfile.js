@@ -1,9 +1,14 @@
 var gulp = require("gulp");
 var stylus = require("gulp-stylus");
+var normalize = require("normalize");
 
 gulp.task("styles", function () {
   gulp.src("./stylus/style.styl")
-    .pipe(stylus())
+    .pipe(stylus({
+      include: [
+        normalize.path,
+      ],
+    }))
     .pipe(gulp.dest("./css"));
 });
 
