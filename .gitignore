@@ -5,3 +5,6 @@ node_modules
 css/*.css
 
 js/app.js
+
+config.yaml
+content.md
