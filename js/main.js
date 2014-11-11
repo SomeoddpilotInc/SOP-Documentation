@@ -5,6 +5,8 @@
 
   factory(window.angular, jsyaml);
 }(function factory (angular, jsyaml) {
+  document.querySelector('body').classList.remove("loading");
+
   angular.module('sop-doc', [])
     .directive('content', function ($http) {
       return {
