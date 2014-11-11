@@ -1,27 +1,44 @@
 (function (factory) {
   var jsyaml = require('js-yaml');
+  var marked = require("marked");
 
   require('angular');
 
-  factory(window.angular, jsyaml);
-}(function factory (angular, jsyaml) {
+  factory(window.angular, jsyaml, marked);
+}(function factory (angular, jsyaml, marked) {
   document.querySelector('body').classList.remove("loading");
 
   angular.module('sop-doc', [])
-    .directive('content', function ($http) {
+    .provider('marked', function () {
+      return {
+        $get: function () {
+          return marked;
+        }
+      };
+    })
+    .config(function ($sceProvider) {
+      $sceProvider.enabled(false);
+    })
+    .directive('content', function ($http, marked) {
       return {
         restrict: 'E',
-        link: function (scope, element) {
+        templateUrl: 'content/index.html',
+        controller: function () {
+          var _this = this;
+
           $http.get('config.yaml')
             .success(function (configYaml) {
-              var parts = [];
+              var config = jsyaml.safeLoad(configYaml);
 
-              jsyaml.safeLoadAll(configYaml, function (config) {
-                parts.push(config);
-              });
-              element.html(parts[1]);
+              _this.title = config.title;
             });
-        }
+
+          $http.get("content.md")
+            .success(function (contentMd) {
+              _this.content = marked(contentMd);
+            });
+        },
+        controllerAs: "content"
       };
     });
 }));
