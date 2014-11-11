@@ -31,11 +31,17 @@
               var config = jsyaml.safeLoad(configYaml);
 
               _this.title = config.title;
+            })
+            .error(function () {
+              _this.title = '';
             });
 
           $http.get("content.md")
             .success(function (contentMd) {
               _this.content = marked(contentMd);
+            })
+            .error(function () {
+              _this.content = "Please put your documentation in <code>content.md</code>. You can see an example file in <code>content.md.example</code>.";
             });
         },
         controllerAs: "content"
