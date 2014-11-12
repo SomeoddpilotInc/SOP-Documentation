@@ -8,13 +8,13 @@ normalize-lists()
 normalize-embed()
 normalize-figures()
 
+$ratio ?= 1.61803398875
+
 body
   font-family "Benton Sans", "Avenir Next", helvetica, sans-serif
 
-  letter-spacing 0.01em
-
 .container
-  max-width 50em
+  max-width ($ratio ** 8)em
   margin 0 auto
   padding 0 1em
 
@@ -30,7 +30,24 @@ h6
   font-weight 400
   font-family "Benton Sans Compressed", "Avenir Next Condensed", helvetica, sans-serif
 
+h1
+  font-size ($ratio ** 2)em
+
+h2
+  font-size ($ratio)em
+
 img
   display block
   max-width 100%
   height auto
+
+blockquote
+  font-size ($ratio)em
+
+code
+  background #eee
+  padding 0 ($ratio ** -3)em
+
+pre
+  background #eee
+  padding ($ratio)em
