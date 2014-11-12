@@ -51,13 +51,67 @@
     background: black;
   }
 }
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  background: #555;
+}
+
+nav ul {
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  background-color: #555;
+  width: 320px;
+}
+
+nav ul.nav-active {
+  height: auto;
+}
+
+nav a {
+  color: #fff;
+}
+.toggle-menu {
+  background: none;
+  border: none;
+}
+.toggle-menu .bar {
+  display: block;
+  width: 1.5em;
+  height: 0.273em;
+  margin: 0.273em;
+  background: #fff;
+}
+.sr-only {
+  display: none;
+}
 </style>
 </head>
 <body class="loading">
 
+  <documentation>
+  <nav>
+    <button class="toggle-menu" ng-click="nav=!nav">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="sr-only">Toggle Table of Contents</span>
+    </button>
+    <ul ng-class="{'nav-active': nav}" ng-click="nav=false">
+      <li ng-repeat="item in documentation.chapters">
+        <a href="#{{item.url}}">{{item.title}}</a>
+      </li>
+    </ul>
+  </nav>
+
   <div class="container">
     <content></content>
   </div>
+  </documentation>
 
   <script>
     var cb = function() {

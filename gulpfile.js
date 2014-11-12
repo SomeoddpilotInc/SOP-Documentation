@@ -41,4 +41,4 @@ gulp.task("watch", function () {
   gulp.watch("./stylus/*.styl", ["styles"]);
 });
 
-gulp.task("default", ["styles"]);
+gulp.task("default", ["styles", "scripts"]);
