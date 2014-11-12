@@ -1,22 +1,11 @@
 (function (factory) {
-  var jsyaml = require('js-yaml');
-  var marked = require("marked");
-  var _ = require('lodash');
-
   require('angular');
 
-  factory(window.angular, jsyaml, marked, _);
-}(function factory (angular, jsyaml, marked, _) {
+  factory(window.angular, require('marked'), require('lodash'));
+}(function factory (angular, marked, _) {
   document.querySelector('body').classList.remove("loading");
 
   angular.module('sop-doc', [])
-    .provider('jsyaml', function () {
-      return {
-        $get: function () {
-          return jsyaml;
-        }
-      };
-    })
     .provider('marked', function () {
       return {
         $get: function () {
@@ -57,19 +46,7 @@
         controllerAs: 'documentation'
       };
     })
-    .controller('ContentCtrl', function ($http, marked, jsyaml) {
-      var _this = this;
-
-      $http.get('config.yaml')
-        .success(function (configYaml) {
-          var config = jsyaml.safeLoad(configYaml);
-
-          _this.title = config.title;
-        })
-        .error(function () {
-          _this.title = '';
-        });
-
+    .controller('ContentCtrl', function ($http, marked) {
     })
     .directive('content', function () {
       return {
