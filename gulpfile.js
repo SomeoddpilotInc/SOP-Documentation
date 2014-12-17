@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 var gulp = require("gulp");
 var stylus = require("gulp-stylus");
 var normalize = require("normalize");
@@ -11,19 +13,21 @@ var ngAnnotate = require("gulp-ng-annotate");
 var connect = require("gulp-connect");
 
 gulp.task("styles", function () {
+  "use strict";
+
   gulp.src("./stylus/style.styl")
     .pipe(stylus({
       include: [
-        normalize.path,
-      ],
+        normalize.path
+      ]
     }))
     .pipe(gulp.dest("./css"));
 });
 
 gulp.task("scripts", function () {
-  var bundler = watchify(browserify("./js/main.js", watchify.args));
+  "use strict";
 
-  bundler.on("update", rebundle);
+  var bundler = watchify(browserify("./js/main.js", watchify.args));
 
   function rebundle() {
     return bundler.bundle()
@@ -35,14 +39,20 @@ gulp.task("scripts", function () {
       .pipe(gulp.dest("./js/"));
   }
 
+  bundler.on("update", rebundle);
+
   return rebundle();
 });
 
 gulp.task("connect", function () {
+  "use strict";
+
   connect.server();
 });
 
 gulp.task("watch", function () {
+  "use strict";
+
   gulp.watch("./stylus/*.styl", ["styles"]);
 });
 
