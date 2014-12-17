@@ -8,6 +8,7 @@ var buffer = require("vinyl-buffer");
 var uglify = require("gulp-uglify");
 var browserify = require("browserify");
 var ngAnnotate = require("gulp-ng-annotate");
+var connect = require("gulp-connect");
 
 gulp.task("styles", function () {
   gulp.src("./stylus/style.styl")
@@ -37,8 +38,12 @@ gulp.task("scripts", function () {
   return rebundle();
 });
 
+gulp.task("connect", function () {
+  connect.server();
+});
+
 gulp.task("watch", function () {
   gulp.watch("./stylus/*.styl", ["styles"]);
 });
 
-gulp.task("default", ["styles", "scripts"]);
+gulp.task("default", ["styles", "scripts", "connect", "watch"]);
