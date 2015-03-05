@@ -5,29 +5,29 @@
 
   require("angular");
 
-  factory(window.angular, require("marked"), require("lodash"));
-}(function factory (angular, marked, _) {
+  factory(window.angular, require("markdown-it"), require("lodash"));
+}(function factory (angular, MarkdownIt, _) {
   "use strict";
 
   document.querySelector("body").classList.remove("loading");
 
   angular.module("sop-doc", [])
-    .provider("marked", function () {
+    .provider("markdown", function () {
       return {
         $get: function () {
-          return marked;
+          return new MarkdownIt();
         }
       };
     })
     .config(function ($sceProvider) {
       $sceProvider.enabled(false);
     })
-    .controller("DocumentationCtrl", function ($http, marked) {
+    .controller("DocumentationCtrl", function ($http, markdown) {
       var self = this;
 
       $http.get("content.md")
         .success(function (contentMd) {
-          self.content = marked(contentMd);
+          self.content = markdown.render(contentMd);
 
           var matches = self.content.match(/h2 id="([a-z-]+)">(.*)</g);
 
