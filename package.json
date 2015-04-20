@@ -4,7 +4,7 @@
   "description": "Documentation framework for SOP sites",
   "scripts": {
     "postinstall": "gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Alex Robertson <alex@someoddpilot.com>",
   "license": "ISC",
@@ -23,5 +23,10 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^3.1.2"
+  },
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "mocha": "^2.2.4",
+    "sinon": "^1.14.1"
   }
 }
