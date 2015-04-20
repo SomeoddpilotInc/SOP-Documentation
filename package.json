@@ -1,6 +1,6 @@
 {
   "name": "sop-documentation",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Documentation framework for SOP sites",
   "scripts": {
     "postinstall": "gulp",
