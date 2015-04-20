@@ -22,7 +22,7 @@
     .config(function ($sceProvider) {
       $sceProvider.enabled(false);
     })
-    .controller("DocumentationCtrl", require('./src/DocumentationCtrl'))
+    .controller("DocumentationCtrl", require('./../src/DocumentationCtrl'))
     .directive("documentation", function () {
       return {
         restrict: "E",

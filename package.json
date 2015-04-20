@@ -3,7 +3,6 @@
   "version": "1.2.1",
   "description": "Documentation framework for SOP sites",
   "scripts": {
-    "postinstall": "gulp",
     "test": "mocha"
   },
   "author": "Alex Robertson <alex@someoddpilot.com>",
