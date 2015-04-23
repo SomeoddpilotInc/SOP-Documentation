@@ -1,0 +1,41 @@
+---
+  env:
+    node: true
+    browser: true
+  rules:
+    quotes: 1 'single'
+    key-spacing: 0
+    strict: false
+    camelcase: false
+
+    block-scoped-var: 2
+    complexity: [1, 2]
+    guard-for-in: 2
+    no-else-return: 2
+    no-param-reassign: 2
+    radix: 2
+    wrap-iife: 2
+    indent: [2, 2]
+    no-self-compare: 2
+    brace-style: [2, '1tbs', {allowSingleLine: false}]
+    comma-style: [2, 'last']
+    func-names: 1
+    func-style: [1, 'declaration']
+    no-lonely-if: 2
+    no-multiple-empty-lines: [1, {max: 2}]
+    no-nested-ternary: 1
+    operator-assignment: [2, 'never']
+    operator-linebreak: [2, 'after']
+    space-in-parens: [2, 'never']
+    space-in-brackets: [2, 'never']
+    space-before-function-paren: [2, {"anonymous": "always", "named": "never"}]
+    space-before-blocks: [2, 'always']
+    space-after-keywords: [2, 'always']
+  globals:
+    jQuery: true
+    skrollr: true
+    _: true
+    it: true
+    describe: true
+    beforeEach: true
+    afterEach: true
