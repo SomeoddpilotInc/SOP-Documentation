@@ -6,10 +6,24 @@ var reader = new commonmark.Parser();
 var writer = new commonmark.HtmlRenderer();
 var fs = require('fs');
 var handlebars = require('handlebars');
+var _ = require('lodash');
+
+function insertId(text, headingMatch, headingType) {
+  return '<' + headingType + ' id="' + _.kebabCase(text) + '">';
+}
+
+function insertIdIntoHeadings(match, _headingType, text) {
+  return match
+    .replace(/<(h[1-6])>/, insertId.bind(this, text));
+}
 
 function markdownTransform(file, enc, callback) {
   var parsed = reader.parse(file.contents.toString());
-  var html = writer.render(parsed);
+
+  const headingRegex = /<(h[1-6])>(.*)<\/\1>/g;
+
+  var html = writer.render(parsed)
+    .replace(headingRegex, insertIdIntoHeadings);
 
   file.contents = new Buffer(html);
 
