@@ -10,5 +10,5 @@ gulp.task("styles", function stylesTask() {
         normalize.path
       ]
     }))
-    .pipe(gulp.dest("./css"));
+    .pipe(gulp.dest("build"));
 });

@@ -30,18 +30,20 @@ function markdownTransform(file, enc, callback) {
   callback(null, file);
 }
 
+function getSectionInfo(match) {
+  return {
+    anchor: match.match(/id="(.*)"/)[1],
+    title: match.match(/>(.*)</)[1]
+  };
+}
+
 function handlebarsTransform(file, enc, callback) {
   var chapters = file.contents.toString()
     .match(headingRegex)
-    .map(function (match) {
-      return {
-        anchor: match.match(/id="(.*)"/)[1],
-        title: match.match(/>(.*)</)[1]
-      };
-    });
+    .map(getSectionInfo);
 
   var html = handlebars.compile(fs.readFileSync('index.html', 'utf8'))({
-    styles: fs.readFileSync('css/style.css', 'utf8'),
+    styles: fs.readFileSync('build/style.css', 'utf8'),
     contents: file.contents.toString(),
     chapters: chapters
   });
