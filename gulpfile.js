@@ -47,7 +47,10 @@ gulp.task("scripts", function () {
 gulp.task("connect", function () {
   "use strict";
 
-  connect.server();
+  connect.server({
+    root: 'build',
+    livereload: true
+  });
 });
 
 gulp.task("watch", function () {
