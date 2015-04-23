@@ -20,9 +20,7 @@ var fs = require('fs');
 var handlebars = require('handlebars');
 
 gulp.task("styles", function () {
-  "use strict";
-
-  gulp.src("./stylus/style.styl")
+  return gulp.src("./stylus/style.styl")
     .pipe(stylus({
       include: [
         normalize.path
@@ -32,8 +30,6 @@ gulp.task("styles", function () {
 });
 
 gulp.task("scripts", function () {
-  "use strict";
-
   var bundler = watchify(browserify("./js/main.js", watchify.args));
 
   function rebundle() {
@@ -52,7 +48,7 @@ gulp.task("scripts", function () {
 });
 
 gulp.task('html', function () {
-  gulp.src('content.md')
+  return gulp.src('content.md')
     .pipe(through.obj(function (file, enc, callback) {
       var parsed = reader.parse(file.contents.toString());
       var html = writer.render(parsed);
@@ -63,6 +59,7 @@ gulp.task('html', function () {
     }))
     .pipe(through.obj(function (file, enc, callback) {
       var html = handlebars.compile(fs.readFileSync('index.html', 'utf8'))({
+        styles: fs.readFileSync('css/style.css', 'utf8'),
         contents: file.contents.toString()
       });
 
@@ -75,8 +72,6 @@ gulp.task('html', function () {
 });
 
 gulp.task("connect", function () {
-  "use strict";
-
   connect.server({
     root: 'build',
     livereload: true
@@ -84,8 +79,6 @@ gulp.task("connect", function () {
 });
 
 gulp.task("watch", function () {
-  "use strict";
-
   gulp.watch("./stylus/*.styl", ["styles"]);
 });
 
