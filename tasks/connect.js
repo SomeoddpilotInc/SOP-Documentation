@@ -3,7 +3,7 @@ var connect = require("gulp-connect");
 
 gulp.task("connect", function connectTask() {
   connect.server({
-    root: 'build',
+    root: ['build', 'images'],
     livereload: true
   });
 });

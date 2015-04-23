@@ -11,6 +11,7 @@ normalize-figures()
 $ratio ?= 1.61803398875
 
 body
+  padding-top 50px
   font-family "Benton Sans", "Avenir Next", helvetica, sans-serif
 
 .container
@@ -20,6 +21,13 @@ body
 
 a
   color #f00
+
+  @media print
+    &::before
+      content "["
+
+    &::after
+      content: "](" attr(href) ")"
 
 h1,
 h2,
@@ -32,6 +40,13 @@ h6
 
 h1
   font-size ($ratio ** 2)em
+
+  &:not(:first-child)
+    page-break-before always
+
+h1
+*:not(h1) + h2
+  margin ($ratio ** 2)em 0 ($ratio ** -1)em
 
 h2
   font-size ($ratio)em
@@ -92,3 +107,7 @@ nav a {
 .sr-only {
   display: none;
 }
+
+.table-of-contents
+  @media print
+    display none

@@ -28,15 +28,17 @@
   </nav>
 
   <div class="container">
-    <h2>Table of Contents</h2>
+    <div class="table-of-contents">
+      <h2>Table of Contents</h2>
 
-    <ul>
-      {{#each chapters}}
-        <li>
-          <a href="#{{anchor}}">{{{title}}}</a>
-        </li>
-      {{/each}}
-    </ul>
+      <ul>
+        {{#each chapters}}
+          <li>
+            <a href="#{{anchor}}">{{{title}}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
     {{{contents}}}
   </div>
 

@@ -3,13 +3,11 @@
 
 node_modules
 
-css/*.css
-
-js/app.js
-
 config.yaml
 content.md
 
-images
+css/*.css
+
+js/app.js
 
 build
