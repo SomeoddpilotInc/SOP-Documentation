@@ -1,57 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="sop-doc">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Documentation</title>
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <style>
-.loading:before {
-  position: fixed;
-  display: block;
-  content: " ";
-
-  left: 50%;
-  top: 50%;
-
-  width: 2em;
-  height: 2em;
-  background: red;
-
-  border-radius: 50%;
-
-  transform: translate(-50%, -50%);
-
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-
-  -webkit-animation-name: loading;
-  animation-name: loading;
-
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-
-  -webkit-animation-direction: alternate;
-  animation-direction: alternate;
-}
-@-webkit-keyframes loading {
-  0% {
-    background: red;
-  }
-
-  100% {
-    background: black;
-  }
-}
-@keyframes loading {
-  0% {
-    background: red;
-  }
-
-  100% {
-    background: black;
-  }
-}
-
 nav {
   position: fixed;
   left: 0;
@@ -94,39 +47,26 @@ nav a {
 }
 </style>
 </head>
-<body class="loading">
+<body>
 
-  <documentation>
   <nav>
-    <button class="toggle-menu" ng-click="nav=!nav">
+    <button class="toggle-menu">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="sr-only">Toggle Table of Contents</span>
     </button>
-    <ul ng-class="{'nav-active': nav}" ng-click="nav=false">
-      <li ng-repeat="item in documentation.chapters">
-        <a href="#{{item.url}}">{{item.title}}</a>
+    <ul>
+      {{#each chapters}}
+      <li>
+        <a href="#{{url}}">{{title}}</a>
       </li>
+      {{/each}}
     </ul>
   </nav>
 
   <div class="container">
-    <content></content>
+    {{{contents}}}
   </div>
-  </documentation>
-
-  <script>
-    var cb = function() {
-      var l = document.createElement('link'); l.rel = 'stylesheet';
-      l.href = 'css/style.css';
-      var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
-    };
-    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-      webkitRequestAnimationFrame || msRequestAnimationFrame;
-      if (raf) raf(cb);
-      else window.addEventListener('load', cb);
-  </script>
-  <script src="js/app.js" async></script>
 </body>
 </html>
