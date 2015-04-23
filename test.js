@@ -11,7 +11,7 @@ describe('Documentation framework', function () {
 
   it('should create index.html file', function (done) {
     gulp.start('html', function () {
-      assert.equal(fs.existsSync('build/index.html'), true);
+      assert.equal(fs.existsSync('./build/index.html'), true);
       done();
     });
   });
