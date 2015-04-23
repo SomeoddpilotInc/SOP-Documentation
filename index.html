@@ -9,18 +9,19 @@
   </style>
 </head>
 <body>
-
   <nav>
-    <button class="toggle-menu">
+    <button class="toggle-menu" toggle-menu>
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="sr-only">Toggle Table of Contents</span>
     </button>
-    <ul>
+    <ul menu>
       {{#each chapters}}
       <li>
-        <a href="#{{anchor}}">{{{title}}}</a>
+        <a href="#{{anchor}}" toggle-menu>
+          {{{title}}}
+        </a>
       </li>
       {{/each}}
     </ul>
@@ -38,5 +39,20 @@
     </ul>
     {{{contents}}}
   </div>
+
+  <script>
+var menu = document.querySelector('[menu]');
+
+function attachToggleClick(toggle) {
+  toggle.addEventListener('click', function () {
+    menu.classList.toggle('nav-active');
+  });
+}
+
+Array.prototype.forEach.call(
+  document.querySelectorAll('[toggle-menu]'),
+  attachToggleClick
+);
+  </script>
 </body>
 </html>
