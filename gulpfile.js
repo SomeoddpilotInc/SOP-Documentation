@@ -10,4 +10,4 @@ gulp.task("watch", function watchTask() {
   gulp.watch("./stylus/*.styl", ["styles"]);
 });
 
-gulp.task("default", ["styles", "connect", 'html', "watch"]);
+gulp.task("default", ['html', "connect", "watch"]);

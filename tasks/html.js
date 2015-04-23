@@ -51,7 +51,7 @@ function handlebarsTransform(file, enc, callback) {
   callback(null, file);
 }
 
-gulp.task('html', function htmlTask() {
+gulp.task('html', ['styles'], function htmlTask() {
   return gulp.src('content.md')
     .pipe(through.obj(markdownTransform))
     .pipe(through.obj(handlebarsTransform))
