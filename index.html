@@ -20,13 +20,22 @@
     <ul>
       {{#each chapters}}
       <li>
-        <a href="#{{url}}">{{title}}</a>
+        <a href="#{{anchor}}">{{{title}}}</a>
       </li>
       {{/each}}
     </ul>
   </nav>
 
   <div class="container">
+    <h2>Table of Contents</h2>
+
+    <ul>
+      {{#each chapters}}
+        <li>
+          <a href="#{{anchor}}">{{{title}}}</a>
+        </li>
+      {{/each}}
+    </ul>
     {{{contents}}}
   </div>
 </body>
